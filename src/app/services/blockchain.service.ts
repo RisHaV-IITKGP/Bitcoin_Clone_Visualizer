@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Blockchain } from 'SavjeeCoin/src/blockchain';
+import { Blockchain } from 'Bitcoin/src/blockchain';
 import EC from "elliptic";
 
 @Injectable({
@@ -17,6 +17,10 @@ export class BlockchainService {
 
   }
 
+  getBlocks() {
+    return this.blockchainInstance.chain;
+  }
+
   private generateWalletKeys() {
     const ec = new EC.ec('secp256k1');
     const key = ec.genKeyPair();
@@ -25,6 +29,7 @@ export class BlockchainService {
       keyObj: key,
       publicKey = key.getPublic('hex');
       priveteKey = key.getPrivate('hex');
-    })
+    });
+
   }
 }
